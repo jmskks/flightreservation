@@ -1,0 +1,69 @@
+# cancellation at the same time
+#
+# user1
+#
+create user1 user1 5000
+login user1 user1
+search "Seattle WA" "Orlando FL" 1 1 1
+book 0
+pay 1
+cancel 1
+quit
+*
+#
+# expected printouts for user1
+# first scenario: : user1 is processed first
+#
+Created user user1
+Logged in as user1
+Itinerary 0: 1 flight(s), 303 minutes
+ID: 60075 Day: 1 Carrier: AS Number: 10 Origin: Seattle WA Dest: Orlando FL Duration: 303 Capacity: 15 Price: 552
+Booked flight(s), reservation ID: 1
+Paid reservation: 1 remaining balance: 4448
+Canceled reservation 1
+Goodbye
+|
+# second scenario: : user1 is processed second
+Created user user1
+Logged in as user1
+Itinerary 0: 1 flight(s), 303 minutes
+ID: 60075 Day: 1 Carrier: AS Number: 10 Origin: Seattle WA Dest: Orlando FL Duration: 303 Capacity: 15 Price: 552
+Booked flight(s), reservation ID: 2
+Cannot find unpaid reservation 1 under user: user1
+Failed to cancel reservation 1
+Goodbye
+*
+#
+# user2
+#
+create user2 user2 5000
+login user2 user2
+search "Seattle WA" "Orlando FL" 1 1 1
+book 0
+pay 2
+cancel 2
+quit
+*
+#
+# expected printouts for user2
+# first scenario: : user2 is processed first
+#
+Created user user2
+Logged in as user2
+Itinerary 0: 1 flight(s), 303 minutes
+ID: 60075 Day: 1 Carrier: AS Number: 10 Origin: Seattle WA Dest: Orlando FL Duration: 303 Capacity: 15 Price: 552
+Booked flight(s), reservation ID: 2
+Paid reservation: 2 remaining balance: 4448
+Canceled reservation 2
+Goodbye
+|
+# second scenario: : user2 is processed second
+Created user user2
+Logged in as user2
+Itinerary 0: 1 flight(s), 303 minutes
+ID: 60075 Day: 1 Carrier: AS Number: 10 Origin: Seattle WA Dest: Orlando FL Duration: 303 Capacity: 15 Price: 552
+Booked flight(s), reservation ID: 1
+Cannot find unpaid reservation 2 under user: user2
+Failed to cancel reservation 2
+Goodbye
+*

@@ -1,0 +1,19 @@
+# 
+# when attempting to login with 
+# non existing id when logged in.
+#
+create james hello12 100
+login james hello12
+create kang qqqq -200
+login kang qqqq
+quit
+*
+#
+# expected printouts for user 1
+#
+Created user james
+Logged in as james
+Failed to create user
+User already logged in
+Goodbye
+*

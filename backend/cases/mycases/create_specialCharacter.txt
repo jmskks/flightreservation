@@ -1,0 +1,14 @@
+# 
+# Can I create a username with #$%^..?
+#
+create james% hello12 100
+create james@ hello12 100
+quit
+*
+#
+# expected printouts for user 1
+Created user james%
+Created user james@
+Goodbye
+*
+#

@@ -1,0 +1,15 @@
+#
+# search with a random character for cities after creating
+# a user!
+#
+create jms ka12 100
+search "SSS" "BBBB" 0 15 10
+quit
+*
+#
+# expected printouts for user 1
+#
+Created user jms
+No flights matches your selection
+Goodbye
+*
